@@ -141,21 +141,28 @@
                 2. 핵심 철학:
                 - 영어는 '어순(주어+동사+목적어)'과 '뉴앙스(그림)'가 전부.
                 - 문장이 길어지는 건 '떨거지(수식어)'와 '다리(연결어)'가 붙어서다. 6가지 법칙만 알면 끝.
-                3. 시각적 장치 (중요):
-                - 문장 해설 시, 핵심 뼈대가 아닌 **'떨거지(수식어구, 전치사구 등)'** 부분은 반드시 <t>텍스트</t> 태그로 감싸라.
-                - 예: I bought the book <t>on the desk</t>.
-                4. 출력 구조:
-                - [🎬 야! 강의 시작한다 마!]: 강의를 여는 강렬한 반말 멘트. 공부에 대한 패기를 불어넣어라.
-                - [🚂 칙칙폭폭 기차 어순 직독직해]: **(절대 생략 금지)** 지문에 나오는 **모든 문장**을 처음부터 끝까지 하나도 빠짐없이 순서대로 다 해석해라. 요약하지 마라.
-                (형식 필히 준수)
-                **영어 문장 (의미 단위로 끊어 읽기 / 표시, 핵심 떨거지는 <t>...</t>로 감싸기)**
-                ✨ [한글 직독직해] / [순서대로] / [해석해라]
+                3. 시각적 장치 (중요 - 반드시 지켜라):
+                - 영어 문장은 의미 단위로 끊어서 슬래시(/)로 구분해라.
+                - 문장 해설 시, 핵심 뼈대가 아닌 **'떨거지(수식어구, 전치사구 등)'** 부분은 반드시 <t>텍스트</t> 태그로 감싸라. (파란색 하이라이트 효과)
+                - 한글 해석은 영어 끊어읽기 순서와 정확히 1:1 대응되게 대괄호[]로 묶고 슬래시(/)로 구분해라.
+                
+                예시:
+                **He / opened / a small food stand / <t>in his hometown of Cancún</t>.**
+                ✨ [그는] / [열었다] / [작은 음식 노점을] / [그의 고향인 칸쿤에서].
 
-                    - [🔍 현미경 떨거지 디비기]: <t> 태그로 표시한 부분이 왜 떨거지인지, 어떤 다리(전치사/관계대명사 등)가 쓰였는지 반말로 설명.
-                        - [🎨 뉴앙스 갤러리]: 단어의 뜻이 아닌 '그림'을 설명 (in은 물방울, at은 점, to는 화살표).
-                - [💡 정답 콕 집기]: 정답과 이유를 명쾌하게 제시.
-                - [🔥 오늘의 한마디]: "영어 공부 안하면 안된다는 각오!"를 강조하는 뜨거운 마무리.
-                5. 아이콘: 초등학생도 쫄지 않게 이모지(Emoji)를 문장마다 듬뿍 섞어라.
+                4. 출력 구조:
+                - [🎬 야! 강의 시작한다 마!]: 강의를 여는 강렬한 반말 멘트.
+                - [🚂 칙칙폭폭 기차 어순 직독직해]: **(절대 생략 금지)** 지문에 나오는 **모든 문장**을 위 예시 포맷(영어-한글 쌍)으로 출력해라. 순서를 지켜라.
+                (형식 필히 준수)
+                
+                **영어 문장 (끊어읽기 / 및 <t>태그 적용)**
+                ✨ [한글 직독직해] / [청크별] / [해석]
+                (한 줄 띄고 다음 문장...)
+
+                    - [🔍 현미경 떨거지 디비기]: <t> 태그로 표시한 부분이 왜 떨거지인지 설명.
+                - [💡 정답 콕 집기]: 정답과 이유.
+                - [🔥 오늘의 한마디]: 뜨거운 마무리.
+                5. 아이콘: 쫄지 않게 이모지 팍팍 써라.
             `;
 
             const handleImageUpload = (e) => {
@@ -240,7 +247,7 @@
                     if (part.startsWith('<t>') && part.endsWith('</t>')) {
                         const content = part.replace(/<\/?t>/g, '');
                         return (
-                            <span key={index} className="text-cyan-600 font-bold underline decoration-dotted decoration-cyan-500 underline-offset-4">
+                            <span key={index} className="text-cyan-400 font-bold underline decoration-dotted decoration-cyan-500 underline-offset-4">
                                 {content}
                             </span>
                         );
@@ -392,7 +399,7 @@
                                             // 2. English Sentences (bolded from prompt)
                                             if (line.trim().startsWith('**')) {
                                                 return (
-                                                    <div key={i} className="text-slate-100 text-xl font-bold mt-8 mb-2 leading-relaxed break-keep tracking-wide pl-2 border-l-4 border-slate-600">
+                                                    <div key={i} className="text-white text-xl font-medium mt-8 mb-1 leading-relaxed break-keep tracking-wide pl-2 border-l-4 border-orange-500/50">
                                                         {renderTextWithHighlights(line.replace(/\*\*/g, ''))}
                                                     </div>
                                                 );
@@ -401,8 +408,8 @@
                                             // 3. Korean Translations (prefixed with ✨)
                                             if (line.trim().startsWith('✨')) {
                                                 return (
-                                                    <div key={i} className="text-orange-300 text-lg font-bold mb-6 pl-2 flex items-start gap-2 leading-relaxed break-keep">
-                                                        <Sparkles className="w-5 h-5 mt-1 shrink-0 text-yellow-500" />
+                                                    <div key={i} className="text-yellow-400 text-base font-normal mb-8 pl-2 flex items-start gap-2 leading-relaxed break-keep">
+                                                        <Sparkles className="w-5 h-5 mt-0.5 shrink-0 text-yellow-500" />
                                                         <span>{line.replace('✨', '').trim()}</span>
                                                     </div>
                                                 );
